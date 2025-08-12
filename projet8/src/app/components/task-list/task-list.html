@@ -1,0 +1,32 @@
+<div class="card">
+    <div class="card-header">
+        <h5>Liste des tâches</h5>
+    </div>
+
+    <ul class="list-group list-group-flush">
+        <li *ngFor="let task of tasks" class="list-group-item">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <input 
+                        type="checkbox"
+                        class="form-check-input me-2"
+                        [checked]="task.completed"
+                        (change)="taskCompleted.emit(task.id)"
+                    >
+                    <span [class.text-decoration-line-through]="task.completed">{{task.title}}</span>
+                </div>
+
+                <select
+                    class="form-select form-select-sm w-auto"
+                    [value]="task.assignedTo?.id || ''"
+                    (change)="onAssignMember(task.id, $event)"
+                >
+                    <option value="">Non attribué</option>
+                    <option [selected]="task.assignedTo?.id === member.id" *ngFor="let member of members" [value]="member.id">
+                        {{member.name}}
+                    </option>
+                </select>
+            </div>        
+        </li>
+    </ul>
+</div>

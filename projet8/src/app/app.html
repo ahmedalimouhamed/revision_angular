@@ -1,0 +1,28 @@
+<div class="container mt-4">
+  <h1>Gestion Familiale <span class="badge bg-primary">{{tasks.length}}</span> tâches</h1>
+
+  <div class="mb-3">
+    <label for="" class="form-label">Filter par membre : </label>
+    <select 
+      class="form-select"
+      [(ngModel)]="selectedMemberId"
+    >
+      <option [value]="null">Tous les membres</option>
+      <option *ngFor="let member of familyMembers" [value]="member.id">
+        <img [src]="member.avatar" alt="" class="avatar me-1" width="30" height="30" style="border-radius: 50%;"> {{member.name}}
+      </option>
+    </select>
+  </div>
+
+  <app-task-list
+    [tasks]="filteredTasks"
+    [members]="familyMembers"
+    (taskCompleted)="onTaskCompleted($event)"
+    (memberAssigned)="onMemberAssigned($event)"
+  ></app-task-list>
+
+
+  <app-task-form
+    (taskAdded)="onTaskAdded($event)"
+  ></app-task-form>
+</div>

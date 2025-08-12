@@ -1,0 +1,22 @@
+<div class="card mt-3">
+    <div class="card-body">
+        <h5 class="card-title">Ajouter une tâche</h5>
+        <div class="input-group">
+            <input 
+                type="text"
+                class="form-control"
+                placeholder="Titre de la tâche"
+                [(ngModel)]="newTaskTitle"
+                placeholder="Nouvelle tâche..."
+                (keyup.enter)="onSubmit()"
+            >
+            <button
+                class="btn btn-primary"
+                (click)="onSubmit()"
+                [disabled]="!newTaskTitle.trim()"
+            >
+                Ajouter
+            </button>
+        </div>
+    </div>
+</div>
