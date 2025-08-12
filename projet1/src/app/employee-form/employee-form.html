@@ -1,0 +1,68 @@
+<form #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)">
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input 
+        type="text" 
+        id="name" 
+        name="name" 
+        required
+        [ngModel]="employee?.name"
+        required
+        minlength="3"
+        #name="ngModel"
+    >
+    <div *ngIf="name.invalid && (name.dirty || name.touched)">
+        <small *ngIf="name.errors?.['required']">Name is required.</small>
+        <small *ngIf="name.errors?.['minlength']">Name must be at least 3 characters long.</small>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input 
+        type="email" 
+        id="email" 
+        name="email" 
+        required
+        [ngModel]="employee?.email"
+        #email="ngModel"
+    >
+    <div *ngIf="email.invalid && (email.dirty || email.touched)">
+        <small *ngIf="email.errors?.['required']">Email is required.</small>
+        <small *ngIf="email.errors?.['email']">Email is invalid.</small>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="phone">Phone:</label>
+    <input 
+        type="tel" 
+        id="phone" 
+        name="phone" 
+        required
+        [ngModel]="employee?.phone"
+        pattern="^\d{10}$"
+        #phone="ngModel"
+    >
+    <div *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+        <small *ngIf="phone.errors?.['required']">Phone is required.</small>
+        <small *ngIf="phone.errors?.['pattern']">Phone must be 10 digits long.</small>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="department">Department:</label>
+    <select 
+        id="department" 
+        name="department" 
+        required
+        [ngModel]="employee?.department"
+        #department="ngModel"
+    >
+      <option *ngFor="let dept of departments" [value]="dept">{{ dept }}</option>
+    </select>
+    <div *ngIf="department.invalid && (department.dirty || department.touched)">
+        <small *ngIf="department.errors?.['required']">Department is required.</small>
+    </div>
+  </div>
+  <button type="submit" [disabled]="employeeForm.invalid">
+    {{ employee ? 'Update' : 'Add' }} Employee
+  </button>
+</form>

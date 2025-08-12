@@ -1,0 +1,14 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <input  formControlName="title" placeholder="Titre">
+    <input  formControlName="author" placeholder="Auteur">
+    <input  formControlName="isbn" placeholder="ISBN">
+    <input type="date"  formControlName="publicationDate" placeholder="Date de publication">
+    <select formControlName="genre">
+        @for(genre of genres; track genre){
+            <option [value]="genre">{{genre}}</option>
+        }
+    </select>
+    <button type="submit" [disabled]="form.invalid">
+        {{book ? 'Mise à jour' : 'Ajouter'}} Livre
+    </button>
+</form>

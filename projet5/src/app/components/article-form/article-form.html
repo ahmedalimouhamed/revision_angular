@@ -1,0 +1,52 @@
+<div class="container mt-4">
+    <h2>{{isEditMode ? 'Edit Article' : 'Add Article'}}</h2>
+
+    <form  [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label for="title">Title</label>
+            <input 
+                type="text" 
+                id="title" 
+                formControlName="title" 
+                class="form-control"
+                [class.is-invalid]="articleForm.get('title')?.invalid && articleForm.get('title')?.touched"
+            >
+            <div *ngIf="articleForm.get('title')?.invalid && articleForm.get('title')?.touched" class="invalid-feedback">
+                Le titre est obligatoire
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="content">Content</label>
+            <textarea 
+                id="content" 
+                class="form-control"
+                rows="5"
+                formControlName="content" 
+                [class.is-invalid]="articleForm.get('content')?.invalid && articleForm.get('content')?.touched"
+            ></textarea>
+            <div *ngIf="articleForm.get('content')?.invalid && articleForm.get('content')?.touched" class="invalid-feedback">
+                Le contenu est obligatoire
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="author">Author</label>
+            <input 
+                type="text" 
+                id="author" 
+                class="form-control"
+                formControlName="author" 
+                [class.is-invalid] = "articleForm.get('author')?.invalid && articleForm.get('author')?.touched"
+            >
+            <div *ngIf="articleForm.get('author')?.invalid && articleForm.get('author')?.touched" class="invalid-feedback">
+                Le nom de l'auteur est obligatoire
+            </div>
+        </div>
+
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary" [disabled]="articleForm.invalid">
+                {{isEditMode ? 'Mise a jour' : 'Créer'}}
+            </button>
+            <button type="button" routerLink="/" class="btn btn-secondary">Annuler</button>
+        </div>
+    </form>
+</div>

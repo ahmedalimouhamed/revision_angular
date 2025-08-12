@@ -1,0 +1,28 @@
+<form #noteForm="ngForm" (ngSubmit)="onSubmit(noteForm)">
+    <input
+        type="text"
+        name="title"
+        [(ngModel)] = "title"
+        placeholder="Title"
+        required
+    >
+
+    <textarea
+        name="content"
+        [(ngModel)] = "content"
+        placeholder="Content"
+        required
+    ></textarea>
+
+    <select
+        name="category"
+        [(ngModel)] = "category"
+        required
+    >
+        <option *ngFor="let cat of categories" [value]="cat">
+            {{cat | titlecase}}
+        </option>
+    </select>
+
+    <button type="submit" [disabled]="noteForm.invalid">Ajouter</button>
+</form>

@@ -1,0 +1,47 @@
+<div class="employee-management">
+    <h1>Employee Management</h1>
+
+    <div class="search-bar">
+        <input 
+            [(ngModel)]="searchItem"
+            placeholder="Search by name or department..."
+        >
+        <button (click)="addNewEmployee()" class="add-button">Add Employee</button>
+
+    </div>
+
+    <app-employee-form
+        *ngIf="editingEmployee !== null"
+        [employee]="editingEmployee"
+        (submitEvent)="handleSubmit($event)"
+    ></app-employee-form>
+
+
+    <div class="employee-list">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Department</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let emp of filteredEmployees">
+                    <td>{{ emp.id }}</td>
+                    <td>{{ emp.name }}</td>
+                    <td>{{ emp.email }}</td>
+                    <td>{{ emp.phone }}</td>
+                    <td>{{ emp.department }}</td>
+                    <td>
+                        <button (click)="editEmployee(emp)">Edit</button>
+                        <button (click)="deleteEmployee(emp.id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

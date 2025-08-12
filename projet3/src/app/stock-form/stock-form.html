@@ -1,0 +1,11 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <input formControlName = "name" placeholder="Name">
+    <select formControlName = "category">
+        <option value="">Categorie</option>
+        <option value="electronique">Electronique</option>
+        <option value="alimentaire">Alimentaire</option>
+    </select>
+    <input type="number" formControlName = "quantity" placeholder="Quantity">
+    <input type="number" step="0.01" formControlName = "price" placeholder="Price">
+    <button type="submit" [disabled]="form.invalid">Add Product</button>
+</form>

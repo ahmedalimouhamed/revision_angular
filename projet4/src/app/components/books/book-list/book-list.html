@@ -1,0 +1,28 @@
+<h2>Collection de Livres</h2>
+
+<div class="borrower-input">
+    <input [(ngModel)] = "currentBorrower" placeholder="Nom du pretataire">
+</div>
+
+<div class="books-grid">
+    @for(book of bookService.books(); track book.id){
+        <div class="book-card" [ngClass]="{'borrowed': !book.available}">
+            <h3>{{book.title}}</h3>
+            <p>Auteur : {{book.author}}</p>
+            <p>Genre : {{book.genre}}</p>
+            <p>ISBN : {{book.isbn}}</p>
+            <p>Date de publication : {{book.publicationDate | date}}</p>
+            @if(book.available){
+                <button (click)="borrow(book.id)">Emprunter</button>
+            }@else{
+                <div class="borrowed-info">
+                    <p>Emprunté par : {{book.borrowedBy}}</p>
+                    <p>Date d'emprunt : {{book.borrowDate | date: 'short'}}</p>
+                    <button (click)="bookService.returnBook(book.id)">Retourner</button>
+                </div>
+            }
+            <a [routerLink]="['/books', book.id, 'edit']">Modifier</a>
+
+        </div>
+    }
+</div>

@@ -1,0 +1,28 @@
+<div class="filters">
+    <button (click)="filter = 'all'">Toutes</button>
+    <button (click)="filter = 'favorites'">Favoris</button>
+    <button (click)="filter = 'travail'">Travail</button>
+    <button (click)="filter = 'perso'">Personnel</button>
+</div>
+
+<div class="notes-grid">
+    <div *ngFor="let note of filteredNotes" class="note-card">
+        <h3>{{note.title}}</h3>
+        <p>{{note.content}}</p>
+
+        <div class="meta">
+            <span class="category">{{note.category}}</span>
+            <span class="date">{{note.createdAt | date:'short'}}</span>
+        </div>
+
+        <div class="actions">
+            <button (click)="toggleFavorite(note.id)">
+                {{note.favorite ? '❤️' : '🤍'}}
+            </button>
+            <button (click)="deleteNote(note.id)">🗑️</button>
+        </div>
+
+    </div>
+</div>
+
+<app-note-form-component (noteAdded)="loadNotes()"></app-note-form-component>

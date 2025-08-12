@@ -1,0 +1,34 @@
+<div class="stock-header">
+    <h2>Inventaire</h2>
+
+    <app-stock-form (productAdded)="stockService.products()"></app-stock-form>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Quantité</th>
+            <th>Prix</th>
+            <th>Dernière mise à jour</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(product of stockService.products(); track product.id){
+            <tr [class.low-stock]="product.quantity <= product.minStock">
+                <td>{{product.name}}</td>
+                <td>
+                    <button (click)="updateQuantity(product.id, -1)">-</button>
+                    {{product.quantity}}
+                    <button (click)="updateQuantity(product.id, 1)">+</button>
+                </td>
+                <td>{{product.price | currency: 'EUR'}}</td>
+                <td>{{product.lastUpdated | date: 'short'}}</td>
+                <td>
+                    <button (click)="stockService.deleteProduct(product.id)">Supprimer</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
