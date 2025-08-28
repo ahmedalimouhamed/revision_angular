@@ -1,0 +1,12 @@
+<app-movie-filter (filterChange)="updateFilter($event)"/>
+
+<div class="grid">
+    @for(movie of filteredMovies(); track movie.id){
+        
+        <app-movie-card
+            [movie]="movie"
+            (rated)="rateMovie(movie.id, $event)"
+        />
+
+    }
+</div>

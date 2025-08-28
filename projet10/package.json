@@ -1,5 +1,5 @@
 {
-  "name": "projet5",
+  "name": "projet10",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -27,11 +27,8 @@
     "@angular/platform-browser": "^20.1.0",
     "@angular/router": "^20.1.0",
     "@popperjs/core": "^2.11.8",
-    "@types/chart.js": "^2.9.41",
     "bootstrap": "^5.3.7",
-    "chart.js": "^4.5.0",
-    "json-server": "^1.0.0-beta.3",
-    "ng2-charts": "^8.0.0",
+    "bootstrap-icons": "^1.13.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },

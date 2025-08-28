@@ -1,0 +1,12 @@
+<select (change)="updateGenre($event)">
+    <option value="">Tous les genres</option>
+    @for(genre of genres(); track genre){
+        <option value="{{genre}}">{{genre}}</option>
+    }
+</select>
+
+<input 
+    type="text"
+    (input)="updateSearch($event)"
+    placeholder="Rechercher"
+/>

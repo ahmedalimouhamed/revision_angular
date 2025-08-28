@@ -1,0 +1,15 @@
+<div class="card mt-4">
+    <div class="card-header bg-success text-white">
+        <h3>Résultat du quizz</h3>
+    </div>
+
+    <div class="card-body text-center">
+        <h4>Votre Score : {{score}}/{{totalQuestions}}</h4>
+        <div class="progress mt-3">
+            <div class="progress-bar bg-success" [style.width]="getPercentage() + '%'">
+                {{getPercentage()}}%
+            </div>
+        </div>
+        <button class="btn btn-primary mt-3" routerLink="/">Recommencer</button>
+    </div>
+</div>

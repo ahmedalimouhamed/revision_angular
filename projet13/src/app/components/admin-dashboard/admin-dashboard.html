@@ -1,0 +1,42 @@
+<div class="admin-dashboard">
+    <h1>Tableau de Bord Administrateur</h1>
+
+    <app-stat-cards></app-stat-cards>
+    <div class="filters-section">
+        <input
+            [(ngModel)]="filters().name"
+            (ngModelChange)="updateFilters()"
+            placeholder="Filtrer par nom"
+        >
+
+        <select [(ngModel)]="filters().role" (change)="updateFilters()">
+            <option value="">Tous les roles</option>
+            <option value="admin">Admin</option>
+            <option value="moderator">Modérateur</option>
+            <option value="user">Utilisateur</option>
+        </select>
+
+        <select [(ngModel)]="filters().department" (change)="updateFilters()">
+            <option value="">Tous les départements</option>
+            <option value="active">Actif</option>
+            <option value="inactive">Inactif</option>
+            <option value="pending">En attente</option>
+        </select>
+
+        <button (click)="openAddModal()">Ajouter un utilisateur</button>
+    </div>
+
+    <app-user-table
+        [users]="dataService.getUsers() | filter:filters()"
+        (editUser)="openEditModal($event)"
+        (deleteUser)="dataService.deleteUser($event)"
+    ></app-user-table>
+
+    @if(showModal()){
+        <app-user-form
+            [user]="editingUser()"
+            (save)="handleUserSave($event)"
+            (close)="closeModal()"
+        ></app-user-form>
+    }
+</div>

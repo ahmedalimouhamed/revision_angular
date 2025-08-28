@@ -1,0 +1,54 @@
+<div class="container">
+    <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()" class="mt-4">
+        <div class="mb-3">
+            <label for="title" class="form-label">Titre*</label>
+            <input type="text" id="title" class="form-control" formControlName="title">
+            @if(recipeForm.controls.title.invalid && recipeForm.controls.title.touched){
+                <div class="alert alert-danger">Le titre est requis.</div>
+            }
+        </div>
+    
+        <div class="mb-3">
+            <label for="category" class="form-label">Catégorie*</label>
+            <select id="category" class="form-select" formControlName="category">
+                <option value="entrée">entrée</option>
+                <option value="plat">plat</option>
+                <option value="dessert">dessert</option>
+            </select>
+        </div>
+    
+        <div class="mb-3">
+            <label for="ingredients" class="form-label">Ingrédients* (séparés par des virgules)</label>
+            <textarea id="ingredients" class="form-control" formControlName="ingredients"></textarea>
+            @if(recipeForm.controls.ingredients.invalid && recipeForm.controls.ingredients.touched){
+                <div class="alert alert-danger">Les ingredients sont obligatoires.</div>
+            }
+        </div>
+    
+        <div class="mb-3">
+            <label for="instructions" class="form-label">Instructions*</label>
+            <textarea id="instructions" class="form-control" formControlName="instructions"></textarea>
+            @if(recipeForm.controls.instructions.invalid && recipeForm.controls.instructions.touched){
+                <div class="alert alert-danger">Les instructions sont obligatoires.</div>
+            }
+        </div>
+    
+        <div class="mb-3">
+            <label for="cookingTime" class="form-label">Temps de cuisson*</label>
+            <input type="number" id="cookingTime" class="form-control" formControlName="cookingTime">
+            @if(recipeForm.controls.cookingTime.invalid && recipeForm.controls.cookingTime.touched){
+                <div class="alert alert-danger">Le temps de cuisson doit être supérieur à 0.</div>
+            }
+        </div>
+    
+        <div class="mb-3">
+            <label for="imageUrl" class="form-label">URL de l'image</label>
+            <input type="text" id="imageUrl" class="form-control" formControlName="imageUrl">
+        </div>
+    
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary" [disabled]="recipeForm.invalid">{{isEditMode() ? 'Mettre à jour' : 'Ajouter'}}</button>
+            <button type="button" class="btn btn-secondary" routerLink="/">Annuler</button>
+        </div>
+    </form>
+</div>

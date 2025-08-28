@@ -1,0 +1,12 @@
+<form (ngSubmit)="onSubmit()" class="input-group">
+    <input 
+        type="text"
+        class="form-control"
+        placeholder="Ajouter une tache"
+        [(ngModel)]="newTaskTitle"
+        name="newTask"
+        placeholder="Nouvelle tache..."
+        required
+    >
+    <button type="submit" class="btn btn-primary">Ajouter</button>
+</form>

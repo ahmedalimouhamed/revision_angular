@@ -1,0 +1,53 @@
+<div class="container mt-4">
+    
+    <div *ngIf="loading" class="text-center">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Chargement...</span>
+        </div>
+    </div>
+
+    <div *ngIf="!loading && recipe" class="card">
+        <img [src]="recipe.imageUrl || '/assets/placeholder.jpg'" class="card-img-top" style="max-height: 400px; object-fit: cover;" alt="">
+        <div class="card-body">
+            <h1 class="card-title">{{recipe.title}}</h1>
+            <div class="d-flex align-items-center mb-3">
+                <span class="badge bg-primary me-2">{{recipe.category}}</span>
+                <span class="ms-2"><i class="bi bi-clock"></i> {{recipe.cookingTime}} minutes</span>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Ingrédients</h3>
+                    <ul class="list-group mb-4">
+                        <li class="list-group-item" *ngFor="let ingredient of recipe.ingredients">
+                            {{ingredient}}
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-md-6">
+                    <h3>Instructions</h3>
+                    <div class="card">
+                        <div class="card-body">
+                            <div [innerHTML]="formatInstructions(recipe.instructions)"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer text-end">
+            <a [routerLink]="['/edit', recipe.id]" class="btn btn-warning me-2">
+                <i class="bi bi-pencil"></i>Modifier
+            </a>
+            <a routerLink="/" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i>Retour
+            </a>
+        </div>
+    </div>
+
+    <div *ngIf="!loading && !recipe" class="alert alert-danger">
+        Recipe non trouvée
+        <a routerLink="/" class="alert-link">Retour à la liste</a>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+<div class="container mt-4">
+    <h1>Gestionnaire de tache <small class="text-muted">(avec signals)</small></h1>
+
+    <div class="btn-group mb-4">
+        <button 
+            class="btn"
+            [class.btn-primary]="filter() === 'all'"
+            (click)="handleFilterChange('all')"
+        >
+            Toutes ({{taskService.tasks().length}})
+        </button>
+
+        <button 
+            class="btn"
+            [class.btn-primary]="filter() === 'active'"
+            (click)="handleFilterChange('active')"
+        >
+            Actives ({{taskService.pendingCount()}})
+        </button>
+
+        <button 
+            class="btn"
+            [class.btn-primary]="filter() === 'completed'"
+            (click)="handleFilterChange('completed')"
+        >
+            Completées ({{taskService.completedCount()}})
+        </button>
+    </div>
+
+    <ul class="list-group">
+        @for(task of tasks(); track task.id){
+            <li class="list-group-item d-flex align-items-center">
+                <input 
+                    type="checkbox"
+                    class="form-check-input me-3"
+                    [checked] = "task.completed"
+                    (change)= "taskService.toggleTask(task.id)"
+                >
+                <span [class.text-decoration-line-through]="task.completed">
+                    {{task.title}}
+                </span>
+                <button 
+                    class="btn btn-danger btn-sm ms-auto"
+                    (click)="taskService.deleteTask(task.id)"
+                >
+                    Supprimer
+                </button>
+            </li>
+        }@empty{
+            <li class="list-group-item text-muted">
+                Aucune tache
+            </li>
+        }
+    </ul>
+
+    <div class="mt-5">
+        <app-task-form></app-task-form>
+    </div>
+
+    <div class="mt-5">
+        <app-stats-widget></app-stats-widget>
+    </div>
+</div>

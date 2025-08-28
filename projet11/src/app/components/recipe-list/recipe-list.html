@@ -1,0 +1,57 @@
+<div class="container mt-4">
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <input 
+                type="text"
+                class="form-control"
+                placeholder="Rechercher"
+                (input)="updateSearch($event)"
+            >
+        </div>
+
+        <div class="col-md-4">
+            <select 
+                class="form-select"
+                (change) = "updateCategory($any($event.target).value)"
+            >
+                <option value="all">Toutes les catégories</option>
+                @for(cat of recipeService.categories(); track cat){
+                    <option [value]="cat">{{cat}}</option>
+                }
+            </select>
+        </div>
+
+        <div class="col-md-2">
+            <a routerLink="/add" class="btn btn-success w-100">+ Ajouter</a>
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @for(recipe of filteredRecipes(); track recipe.id){
+            <div class="col">
+                <div class="card h-100">
+                    <img [src]="recipe.imageUrl || '/assets/placeholder.jpg'" class="card-img-top" style="height: 200px; object-fit: cover;" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">{{recipe.title}}</h5>
+                        <p class="card-text">
+                            <span class="badge bg-primary">{{recipe.category}}</span>
+                            <span class="ms-2">
+                                <i class="bi bi-clock"></i> {{recipe.cookingTime}} minutes
+                            </span>
+                        </p>
+
+                        <div class="d-flex justify-content-between">
+                            <a [routerLink]="['/edit', recipe.id]" class="btn btn-sm btn-warning">Modifier</a>
+                            <a [routerLink]="['/recipe', recipe.id]" class="btn btn-sm btn-info">Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        } @empty{
+            <div class="col-12">
+                <div class="alert alert-info">Aucune recette trouvée</div>
+            </div>
+        }
+    </div>
+</div>

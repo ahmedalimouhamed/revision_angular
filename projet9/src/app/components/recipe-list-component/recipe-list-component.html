@@ -1,0 +1,38 @@
+<div class="container mt-4">
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <input type="text" class="form-control" placeholder="Rechercher" [(ngModel)]="searchTerm" (input)="filterRecipes()">
+        </div>
+    
+
+        <div class="col-md-4">
+            <select [(ngModel)]="selectedCategory" (change)="filterRecipes()" id="" class="form-select">
+                <option *ngFor="let category of categories" [value]="category">{{ category === 'all' ? 'Toutes les catégories' : category }}</option>
+            </select>
+        </div>
+
+        <div class="col-md-2">
+            <a routerLink="/add" class="btn btn-success w-100">+ Ajouter</a>
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col" *ngFor="let recipe of filteredRecipes">
+            <div class="card h-100">
+                <img [src]="recipe.imageUrl || '/assets/placeholder.jpg'" class="card-img-top" alt="" style="height: 200px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ recipe.title }}</h5>
+                    <p class="card-text">
+                        <span class="badge bg-primary">{{ recipe.category }}</span>
+                        <span class="ms-2"><i class="bi bi-clock"></i> {{ recipe.cookingTime }}</span>
+                    </p>
+
+                    <div class="d-flex justify-centent-between">
+                        <a [routerLink]="['/recipe', recipe.id, 'edit']" class="btn btn-sm btn-warning">Modifier</a>
+                        <button (click)="onDelete(recipe.id!)" class="btn btn-danger">Supprimer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

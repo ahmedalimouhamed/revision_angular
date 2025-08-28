@@ -1,0 +1,12 @@
+<div class="card">
+    <img [src]="movie().posterUrl || 'assets/placeholder.png'" alt="">
+
+    <div class="card-body">
+        <h3>{{movie().title}}</h3>
+        <div class="stars">
+            @for(star of [1,2,3,4,5]; track star){
+                <span (click)="rated.emit(star)">{{star <= movie().rating ? '⭐' : '☆'}}</span>
+            }
+        </div>
+    </div>
+</div>

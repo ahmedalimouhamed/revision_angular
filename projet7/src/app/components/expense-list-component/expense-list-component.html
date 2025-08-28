@@ -1,0 +1,60 @@
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card bg-light">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Solde Total</h5>
+                    <h2 class="text-danger">{{balance | currency:'EUR':'symbol':'1.2-2'}}</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex gap-2">
+                        <select class="form-select w-75" (change)="filterByCategory($any($event.target).value)">
+                            <option [value]="null">Tous les catégories</option>
+                            <option *ngFor="let cat of categories" [value]="cat">{{cat}}</option>
+                        </select>
+
+                        <button class="btn btn-primary w-25" routerLink="/add">+ Ajouter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Répartition par Catégorie</h5>
+                    <app-expense-chart-component></app-expense-chart-component>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h5>Historique des Dépenses</h5>
+        </div>
+
+        <ul class="list-group list-group-flush">
+            <li *ngFor="let exp of expenses" class="list-group-item d-flex justify-content-between">
+                <div>
+                    <strong>{{exp.title}}</strong>
+                    <small class="text-muted d-block">{{exp.category}} * {{exp.date | date:'dd/MM/yyyy'}}</small>
+                </div>
+
+                <div>
+                    <span class="text-danger me-3">{{exp.amount | currency: 'EUR':'symbol':'1.2-2'}}</span>
+                    <button class="btn btn-sm btn-outline-danger" (click)="onDelete(exp.id)">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

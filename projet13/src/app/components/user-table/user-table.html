@@ -1,0 +1,35 @@
+<table class="user-table">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Departement</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(user of users; track user.id){
+            <tr>
+                <td>{{user.name}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.role}}</td>
+                <td>{{user.department}}</td>
+                <td>
+                    <span [class]="getStatusClass(user.status)">
+                        {{user.status}}
+                    </span>
+                </td>
+                <td>
+                    <button (click)="onEdit(user)">Edit</button>
+                    <button 
+                        appConfirmDelete
+                        (confirm)="onDelete(user.id)"
+                        message="Are you sure you want to delete this user?"
+                    >Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

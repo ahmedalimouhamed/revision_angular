@@ -1,0 +1,96 @@
+<div class="container mt-4">
+    <h2>{{isEditMode ? 'Modifier La Recette' : 'Ajouter un nouvele recette'}}</h2>
+
+    <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()" class="mt-4">
+        <div class="mb-3">
+            <label for="title" class="form-label">Titre de la recette*</label>
+            <input
+                type="text"
+                id="title"
+                class="form-control"
+                formControlName="title"
+                [class.is-invalid]="recipeForm.get('title')?.invalid && recipeForm.get('title')?.touched"
+            >
+            <div *ngIf="recipeForm.get('title')?.invalid && recipeForm.get('title')?.touched" class="invalid-feedback">
+                Le titre est obligatoire
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="category" class="form-label">Catégorie*</label>
+            <select
+                id="category"
+                class="form-select"
+                formControlName="category"
+                [class.is-invalid]="recipeForm.get('category')?.invalid && recipeForm.get('category')?.touched"
+            >
+                <option value="entrée">entrée</option>
+                <option value="plat">plat</option>
+                <option value="dessert">dessert</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="ingredients" class="form-label">Ingredients* (séparés par des virgules)</label>
+            <textarea 
+                name="ingredients"
+                id="ingredients"
+                class="form-control"
+                rows="3"
+                formControlName="ingredients"
+                [class.is-invalid]="recipeForm.get('ingredients')?.invalid && recipeForm.get('ingredients')?.touched"
+            ></textarea>
+            <div *ngIf="recipeForm.get('ingredients')?.invalid && recipeForm.get('ingredients')?.touched" class="invalid-feedback">
+                Les ingredients sont obligatoires
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="instructions" class="form-label">Instructions*</label>
+            <textarea
+                id="instructions"
+                class="form-control"
+                rows="5"
+                formControlName="instructions"
+                [class.is-invalid]="recipeForm.get('instructions')?.invalid && recipeForm.get('instructions')?.touched"
+            ></textarea>
+            <div *ngIf="recipeForm.get('instructions')?.invalid && recipeForm.get('instructions')?.touched" class="invalid-feedback">
+                Les instructions sont obligatoires
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="cookingTime" class="form-label">Temps de cuisson (minutes)*</label>
+            <input
+                type="number"
+                id="cookingTime"
+                class="form-control"
+                formControlName="cookingTime"
+                [class.is-invalid]="recipeForm.get('cookingTime')?.invalid && recipeForm.get('cookingTime')?.touched"
+            >
+            <div *ngIf="recipeForm.get('cookingTime')?.invalid && recipeForm.get('cookingTime')?.touched" class="invalid-feedback">
+                Le temps doit être au moins 1 minute
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="imageUrl" class="form-label">URL de l'image</label>
+            <input 
+                type="url"
+                id="imageUrl"
+                class="form-control"
+                formControlName="imageUrl"
+                placeholder="https://example.com/image.jpg"
+            >
+        </div>
+
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary" [disabled]="recipeForm.invalid">
+                {{isEditMode ? 'Modifier' : 'Ajouter'}}
+            </button>
+            <button type="button" class="btn btn-secondary" routerLink="/">
+                Annuler
+            </button>
+        </div>
+    </form>
+</div>

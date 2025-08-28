@@ -1,0 +1,69 @@
+{
+    "recipes": [
+        {
+            "id": 1,
+            "title": "Pate Carbonara",
+            "category": "plat",
+            "ingredients": [
+                "pate",
+                "fromage",
+                "oeufs",
+                "huile",
+                "parmesan"
+            ],
+            "instructions": [
+                "Faire cuire la pate",
+                "Faire cuire les œufs",
+                "Mélanger les œufs avec le parmesan",
+                "Ajouter la pate cuite",
+                "Ajouter le fromage",
+                "Ajouter l'huile"
+            ],
+            "cookingTime": "30 minutes",
+            "imageUrl": ""
+        },
+
+        {
+            "id": 2,
+            "title": "Pate à la bolognaise",
+            "category": "plat",
+            "ingredients": [
+                "pate",
+                "boeuf haché",
+                "tomate",
+                "huile",
+                "parmesan"
+            ],
+            "instructions": [
+                "Faire cuire la pate",
+                "Faire cuire le boeuf haché",
+                "Mélanger le boeuf haché avec la tomate",
+                "Ajouter la pate cuite",
+                "Ajouter le fromage",
+                "Ajouter l'huile"
+            ],
+            "cookingTime": "1 heure",
+            "imageUrl": ""
+        },
+
+        {
+            "id": 3,
+            "title": "pizza margherita",
+            "category": "plat",
+            "ingredients": [
+                "pate",
+                "tomate",
+                "huile",
+                "parmesan"
+            ],
+            "instructions": [
+                "Faire cuire la pate",
+                "Ajouter la pate cuite",
+                "Ajouter le fromage",
+                "Ajouter l'huile"
+            ],
+            "cookingTime": "15 minutes",
+            "imageUrl": ""
+        }
+    ]
+}

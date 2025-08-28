@@ -1,0 +1,18 @@
+<div class="card">
+    <div class="card-body d-flex justify-content-between">
+        <div>
+            <h6>Total</h6>
+            <span class="badge bg-primary">{{totalTasks()}}</span>
+        </div>
+
+        <div>
+            <h6>Actives</h6>
+            <span class="badge bg-warning">{{taskService.pendingCount()}}</span>
+        </div>
+
+        <div>
+            <h6>Completées</h6>
+            <span class="badge bg-success">{{taskService.completedCount()}}</span>
+        </div>
+    </div>
+</div>
