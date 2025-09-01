@@ -1,0 +1,26 @@
+.user-avatar{
+    border-radius:50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.user-avatar img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.avatar-fallback{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #3f51b5;
+    color: white;
+    font-weight: bold;
+    font-size: calc(40%);
+    text-transform: uppercase;
+}

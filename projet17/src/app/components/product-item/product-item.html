@@ -1,0 +1,21 @@
+<div class="product-item" [appBorderOnHover]="'2px solid #3f51b5'" borderRadius="8px">
+    <div class="product-image">
+        <img [src]="product?.imageUrl || 'https://via.placeholder.com/150'" [alt]="product?.name">
+    </div>
+
+    <div class="product-info">
+        <h3 class="product-name">{{product?.name}}</h3>
+        <p class="product-description">{{product?.description}}</p>
+        <p class="product-category">{{product?.category}}</p>
+        <p class="product-price">{{product?.price | currency:'EUR'}}</p>
+
+        <div class="product-rating">
+            <app-rating-stars
+                [rating]="product?.rating || 0"
+                [readonly]="false"
+                (ratingChange)="onRate($event)"
+            ></app-rating-stars>
+            <span class="rating-count">({{product?.ratingCount || 0}} avis)</span>
+        </div>
+    </div>
+</div>

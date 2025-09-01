@@ -1,0 +1,18 @@
+<div class="rating-stars">
+    <span
+        *ngFor="let star of stars"
+        class="star"
+        [class.filled]="star <= (hoverRating || rating)"
+        [class.hover]="hoverRating > 0 && star <= hoverRating"
+        (clicj)="rate(star)"
+        (mouseenter)="setHoverRating(star)"
+        (mouseleave)="clearHoverRating()"
+        [style.fontSize.px]="starSize"
+        [appPulseAnimation]="'pulse'"
+    >
+    ✳️
+    </span>
+    <span class="rating-value" [appColorByRating]="rating">
+        {{rating.toFixed(1)}}
+    </span>
+</div>

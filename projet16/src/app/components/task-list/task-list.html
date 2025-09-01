@@ -1,0 +1,25 @@
+<div class="task-list">
+    <h2>Liste des tâches</h2>
+
+    <app-task-form
+        [editingTask]="editingTask"
+        (submitTask)="onAddTask($event)"
+        (updateTask)="onUpdateTask($event)"
+        (cancel)="cancelEdit()"
+    ></app-task-form>
+
+    <div class="tasks-container">
+        <div *ngFor="let task of tasks" class="task-wrapper">
+            <app-task-item
+                [task]="task"
+                (toggleComplete)="onToggleComplete($event)"
+                (delete)="onDeleteTask($event)"
+                (edit)="onEditTask($event)"
+            ></app-task-item>
+        </div>
+    </div>
+
+    <div *ngIf="tasks.length === 0" class="empty-tasks">
+        <p>Aucune tâche à afficher. Ajouter votre première tâche!</p>
+    </div>
+</div>

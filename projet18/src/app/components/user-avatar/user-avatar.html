@@ -1,0 +1,12 @@
+<div class="user-avatar" [style.width.px]="size" [style.height.px]="size">
+    <img 
+        [src]="user?.avatar || 'https://randomuser.me/api/portraits/men/1.jpg'"
+        [alt]="user?.name || 'Avatar'"
+        [style.width.px]="size"
+        [style.height.px]="size"
+    >
+
+    <div class="avatar-fallback" *ngIf="!user?.avatar">
+        {{getInitials(user?.name!)}}
+    </div>
+</div>

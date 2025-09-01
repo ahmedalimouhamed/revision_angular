@@ -1,0 +1,47 @@
+.availability-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  background-color: #f3f4f6;
+  color: #4b5563;
+  
+  .status-dot {
+    display: inline-block;
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    background-color: #9ca3af;
+  }
+
+  &.available {
+    background-color: #ecfdf5;
+    color: #065f46;
+    .status-dot {
+      background-color: #10b981;
+    }
+  }
+
+  &.limited {
+    background-color: #fffbeb;
+    color: #92400e;
+    .status-dot {
+      background-color: #f59e0b;
+    }
+  }
+
+  &.unavailable {
+    background-color: #fef2f2;
+    color: #991b1b;
+    .status-dot {
+      background-color: #ef4444;
+    }
+  }
+
+  .status-text {
+    white-space: nowrap;
+  }
+}

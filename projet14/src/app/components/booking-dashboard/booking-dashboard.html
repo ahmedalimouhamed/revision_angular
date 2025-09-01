@@ -1,0 +1,38 @@
+<div class="booking-dashboard">
+    <h1>Réservation de salles de réunion</h1>
+
+    <div class="date-selector">
+        <label for="date">Date :</label>
+        <input 
+            type="date"
+            [value]="selectedDate() | date:'yyyy-MM-dd'"
+            (change)="onDateChange($any($event).target.valueAsDate)"
+        >
+    </div>
+
+    <div class="dashboard-content">
+        <app-room-list 
+            (roomSelected)="onRoomSelected($event)"
+            [selectedDate]="selectedDate()">
+        </app-room-list>
+
+        <div class="booking-container">
+            @if (showBookingForm() && selectedRoom()) {
+                <app-booking-form
+                    [room]="selectedRoom()!"
+                    [selectedDate]="selectedDate()"
+                    (bookingCreated)="onBookingCreated()"
+                    (cancel)="showBookingForm.set(false)">
+                </app-booking-form>
+            } @else {
+                @if (selectedRoom()) {
+                    <app-booking-calendar></app-booking-calendar>
+                } @else {
+                    <div class="no-room-selected">
+                        <p>Sélectionnez une salle pour voir les disponibilités</p>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>

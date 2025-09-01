@@ -1,0 +1,13 @@
+<app-booking-dashboard></app-booking-dashboard>
+
+<button
+  appHover
+  [hoverColor]="'#ff4081'"
+  [transitionDuration]="'0.5s'"
+  (hoverStart)="onHoverStart()"
+  (hoverEnd)="onHoverEnd()"
+>
+  Button avec affet de survol
+</button>
+
+<input [appAutoFocus]="isFormActive()" [delay]="1000">

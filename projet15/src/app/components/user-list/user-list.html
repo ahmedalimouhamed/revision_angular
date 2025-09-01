@@ -1,0 +1,14 @@
+<h2>Liste des utilisateurs</h2>
+
+<div *appCustomFor="let user of users">
+    <app-user-card 
+        [user]="user" 
+        (userSelected)="onUserSelected($event)"
+    ></app-user-card>
+</div>
+
+<data *appCustomIf="selectedUser">
+    <h3>Utilisateur sélectionné : </h3>
+    <p>{{selectedUser?.name}}</p>
+    <p>{{selectedUser?.email}}</p>
+</data>

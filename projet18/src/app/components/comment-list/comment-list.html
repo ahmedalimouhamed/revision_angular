@@ -1,0 +1,52 @@
+<div class="comment-list">
+    <div class="comment-form-container">
+        <app-comment-form
+            [placeholder]="'Partager vos pensés...'"
+            (commentSubmitted)="onCommentSubmitted($event)"
+        ></app-comment-form>
+    </div>
+
+    <div class="comments-container">
+        <h3>Commentaires ({{comments.length}})</h3>
+
+        <div *ngIf="comments.length === 0" class="emty-state">
+            <p>Soyer le premier à commenter!</p>
+        </div>
+
+        <div *ngFor="let comment of comments" class="comment-wrapper">
+            <app-comment-item
+                [comment]="comment"
+                (isReply)="false"
+                (like)="onLike($event)"
+                (reply)="onReply($event)"
+                (edit)="onEdit($event)"
+                (delete)="onDelete($event)"
+                (copyLink)="onCopyLink($event)"
+            ></app-comment-item>
+
+            <div *ngIf="replyingTo === comment.id" class="reply-form-container">
+                <app-comment-form
+                    [placeholder]="'Répondre au commentaire...'"
+                    [replyMode]="true"
+                    [parentId]="comment.id"
+                    (commentSubmitted)="onCommentSubmitted($event)"
+                    (cancelReply)="onCancelReply()"
+                ></app-comment-form>
+            </div>
+
+            <div *ngIf="comment.replies && comment.replies.length > 0" class="replies">
+                <div *ngFor="let reply of comment.replies" class="reply-wrapper">
+                    <app-comment-item
+                        [comment]="reply"
+                        (isReply)="true"
+                        (like)="onLike($event)"
+                        (reply)="onReply($event)"
+                        (edit)="onEdit($event)"
+                        (delete)="onDelete($event)"
+                        (copyLink)="onCopyLink($event)"
+                    ></app-comment-item>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

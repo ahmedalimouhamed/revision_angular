@@ -1,0 +1,62 @@
+<div class="current-weatcher" *ngIf="weather && !loading; else loadingTemplate">
+    <div class="weather-ward" [appWeatherBackground]="weather.description" [temperature]="weather.temperature">
+        <div class="weather-header">
+            <h2 class="location">
+                {{weather.location}}, {{weather.country}}
+            </h2>
+            <button (click)="refreshWeather()" class="refresh-btn" title="Actualiser">
+                <span class="refresh-icon">🔄</span>
+            </button>
+        </div>
+
+        <div class="weather-main">
+            <div class="temperature-section">
+                <div class="current-temp" [appTemperatureColor]="weather.temperature">
+                    <span [appAnimateValue]="weather.temperature" [duration]="1000"></span>
+                </div>
+
+                <div class="feels-like">
+                    Ressenti: {{weather.feelsLike | temperature}}
+                </div>
+            </div>
+
+            <div class="weather-info">
+                <div class="weather-icon">
+                    {{weather.icon | weatherIcon}}
+                </div>
+
+                <div class="weather-description">
+                    {{weather.description}}
+                </div>
+            </div>
+        </div>
+
+        <div class="weather-meta">
+
+            <div class="meta-item">
+                <span class="meta-icon">💧</span>
+                <span class="meta-value">{{weather.humidity}}%</span>
+                <span class="meta-label">Humidité</span>
+            </div>
+
+            <div class="meta-item">
+                <span class="meta-icon">🌬️</span>
+                <span class="meta-value">{{weather.windSpeed}} km/h</span>
+                <span class="meta-label">Vitesse du vent</span>
+            </div>
+
+            <div class="meta-item">
+                <span class="meta-icon">🌡️</span>
+                <span class="meta-value">{{weather.pressure}} hPa</span>
+                <span class="meta-label">Pression atmosphérique</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #loadingTemplate>
+    <div class="loading-containe">
+        <div class="loading-spinner"></div>
+        <p>Chargement des données météo...</p>
+    </div>
+</ng-template>

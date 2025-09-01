@@ -1,0 +1,20 @@
+<div class="rooms-grid">
+    @for(room of rooms; track room.id){
+        <div
+            class="room-card"
+            (click)="onRoomSelect(room)"
+            appTooltip="Cliquer pour réserver"
+        >
+            <h3>{{room.name}}</h3>
+            <p>Capacité : {{room.capacity}} personnes</p>
+            <p>Equipement : {{room.equipement.join(', ')}}</p>
+            <p>Etage: {{room.floor}}</p>
+            
+            
+            <app-availability-indicator></app-availability-indicator>
+            <div class="booking-count">
+                {{getRoomBookings(room.id)}} réservation(s) ce jour
+            </div>
+        </div>
+    }
+</div>

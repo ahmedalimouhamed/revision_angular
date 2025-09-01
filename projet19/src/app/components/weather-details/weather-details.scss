@@ -1,0 +1,61 @@
+.wether-details {
+    font-size: 2re;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    color: white;    
+}
+
+.detail-info{
+    flex: 1;
+}
+
+.detail-label{
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.detail-value{
+    color: #2c3e50;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+@media(max-width: 768px){
+    .details-grid{
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 12px;
+    }
+
+    .detail-card{
+        padding: 16px;
+        gap: 12px;
+    }
+
+    .detail-icon{
+        font-size: 1.5rem;
+        width: 40px;
+        height: 40px;
+    }
+
+    .detail-label{
+        font-size: 0.8rem;
+    }
+
+    .detail-value{
+        font-size: 1rem;
+    }
+}
+
+@media(max-width: 480px){
+    .detail-grid{
+        grid-template-columns: 1fr;
+    }
+}

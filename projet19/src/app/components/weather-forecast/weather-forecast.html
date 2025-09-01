@@ -1,0 +1,51 @@
+<div class="weather-forecast">
+    <h3 class="forecast-title">Prévisions sur 5 jours</h3>
+
+    <div *ngIf="!loading && forecast.length > 0; else loadingTemplate" class="forecast-container">
+        <div *ngFor="let day of forecast" class="forecast-day">
+            <div class="day-header">
+                <div class="day-name">{{day.date | date:'EEE'}}</div>
+                <div class="day-date">{{day.date | date:'dd/MM'}}</div>
+            </div>
+
+            <div class="day-weather">
+                <div class="forecast-icon">
+                    {{day.icon | weatherIcon}}
+                </div>
+
+                <div class="forecast-desc">
+                    {{day.description}}
+                </div>
+            </div>
+
+            <div class="day-temperatures">
+                <div class="temp-max" [appTemperatureColor]="day.maxTemperature">
+                    ☝ {{day.maxTemperature | temperature}}
+                </div>
+
+                <div class="temp-min" [appTemperatureColor]="day.minTemperature">
+                    👇 {{day.minTemperature | temperature}}
+                </div>
+            </div>
+
+            <div class="day-details">
+                <div class="detail-item">
+                    <span class="detail-icon">💧</span>
+                    <span class="detail-value">{{day.humidity}}%</span>
+                </div>
+
+                <div class="detail-item">
+                    <span class="detail-icon">🌬️</span>
+                    <span class="detail-value">{{day.precipitation}} %</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #loadingTemplate>
+        <div class="loading-container">
+            <div class="loading-spinner"></div>
+            <p>Chargement des prévisions...</p>
+        </div>
+    </ng-template>
+</div>

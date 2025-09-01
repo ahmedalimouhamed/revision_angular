@@ -1,0 +1,27 @@
+<div class="product-list">
+    <h2>Nos Produits</h2>
+
+    <div class="category-filter">
+        <label for="category">Filter par catégorie:</label>
+
+        <select id="category" (change)="onCategoryChange($event.target.value)">
+            <option value="">Toutes les catégories</option>
+            <option *ngFor="let category of categories" [value]="category">
+                {{category}}
+            </option>
+        </select>
+    </div>
+
+    <div class="products-container">
+        <div *ngFor="let product of products" class="product-wrapper">
+            <app-product-item 
+                [product]="product" 
+                (rateProduct)="onRateProduct($event)"
+            ></app-product-item>
+        </div>
+    </div>
+
+    <div *ngIf="products.length === 0" class="empty-state">
+        <p>Aucun produit trouvé</p>
+    </div>
+</div>

@@ -1,0 +1,89 @@
+<div class="comment-item" [class.reply]="isReply" id="comment-{{comment?.id}}">
+    <div class="comment-header">
+        <div class="comment-user">
+            <app-user-avatar [user]="comment?.user!" [size]="40"></app-user-avatar>
+            <div class="user-info">
+                <span class="user-name">{{comment?.user?.name}}</span>
+                <span class="user-date">{{comment?.createdAt! | timeAgo}}</span>
+                <span *ngIf="comment?.updatedAt !== comment?.createdAt" class="edited">(modifié)</span>
+            </div>
+        </div>
+
+        <div class="comment-actions-menu">
+            <button class="menu-btn" (click)="showMenu = !showMenu">...</button>
+            <div class="dropdown-menu" *ngIf="showMenu">
+                <button (click)="onEdit(); showMenu = false">Modifier</button>
+                <button (click)="onCopyLink(); showMenu=false">Copier le lien</button>
+                <button class="delete-btn" (click)="onDelete(); showMenu=false">supprimer</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="comment-content">
+        <div *ngIf="!isEditing; else editTemplate">
+            <p [appHighlightMention]="comment?.content || ''" [mentionColor]="'#3f51b5'"></p>
+        </div>
+
+        <ng-template #editTemplate>
+            <div class="edit-form">
+                <textarea
+                    [(ngModel)]="editedContent"
+                    class="edit-textarea"
+                    placeholder="Modifier votre commentaire..."
+                    rows="3"
+                    appAutoExpand
+                    [maxHeight]="150"
+                ></textarea>
+
+                <div class="edit-actions">
+                    <button (click)="onSaveEdit()" class="btn btn-primary">Enregistrer</button>
+                    <button (click)="onCancelEdit()" class="btn btn-secondary">Annuler</button>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+
+    <div class="comment-footer">
+        <div class="comment-actions">
+            <button
+                (click)="onLike()"
+                class="action-btn"
+                [class.liked]="comment?.isLiked"
+                title="j\'aime"
+            >
+                <span class="icon">👍</span>
+                <span class="count">{{comment?.likes}}</span>
+            </button>
+
+            <button
+                (click)="onReply()"
+                class="action-btn"
+                title="Répondre"
+            >
+                <span class="icon">💬</span>
+                <span>Répondre</span>
+            </button>
+
+            <button
+                [appCopyToClipboard]="'#comment-' + comment?.id"
+                [copyText]="'Lien copié !'"
+                class="action-btn"
+                title="Copier le lien"
+            >
+                <span class="icon">📋</span>
+                <span>Lien</span>
+            </button>
+        </div>
+    </div>
+
+    <div *ngIf="isReplying" class="inline-reply-form">
+        <app-comment-form
+            [placeholder]="'Répondre à ' + comment?.user?.name"
+            [replyMode]="true"
+            [parentId]="comment?.id"
+            (commentSubmitted)="onCommentSubmitted($event)"
+            (cancelReply)="onCancelReply()"
+        ></app-comment-form>
+
+    </div>
+</div>

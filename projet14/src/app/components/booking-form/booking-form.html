@@ -1,0 +1,28 @@
+<div class="booking-form">
+    <h2>Réserver {{room.name}}</h2>
+
+    <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+        <input formControlName="title" placeholder="Titre de la réunion">
+
+        <textarea formControlName="description" placeholder="Description"></textarea>
+
+        <div class="time-inputs">
+            <input type="time" formControlName="startTime">
+            <span>à</span>
+            <input type="time" formControlName="endTime">
+        </div>
+
+        <input formControlName="organizer" placeholder="Organisateur">
+
+        <input formControlName="participants" placeholder="participants (séparés par des virgules)">
+
+        @if(bookingError){
+            <div class="error">{{bookingError}}</div>
+        }
+
+        <div class="form-action">
+            <button type="submit" (click)="cancel.emit()">Annuler</button>
+            <button type="button" [disabled]="bookingForm.invalid">Réserver</button>
+        </div>
+    </form>
+</div>

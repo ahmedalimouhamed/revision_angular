@@ -1,0 +1,33 @@
+<div class="task-item" [appPriorityHighlight]="task?.priority || 'low'" [appDragDrop]="true">
+   <div class="task-header">
+        <h3 [appTaskTooltip]="task?.description || ''">{{task?.title}}</h3>
+        <span 
+            class="task-priority" 
+            [class.priority-high]="task?.priority === 'high'"
+            [class.priority-medium]="task?.priority === 'medium'"
+            [class.priority-low]="task?.priority === 'low'"
+        >
+            {{task?.priority}}
+        </span>
+   </div>
+
+   <p class="task-description">{{task?.description}}</p>
+
+   <div class="task-meta">
+    <span class="due-date" *ngIf="task?.dueDate">
+        Echéance : {{task?.dueDate | date: 'shortDate'}}
+    </span>
+
+    <span class="status" [class.completed]="task?.completed">
+        {{task?.completed ? 'Completée' : 'En cours'}}
+    </span>
+   </div>
+
+   <div class="task-actions">
+    <button (click)="onToggleComplete()" class="btn-primary">
+        {{task?.completed ? 'Marquer comme incomplète' : 'Marquer comme complète'}}
+    </button>
+    <button (click)="onEdit()" class="btn-secondary">Modifier</button>
+    <button (click)="onDelete()" class="btn-danger">Supprimer</button>
+   </div>
+</div>

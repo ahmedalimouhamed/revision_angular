@@ -1,0 +1,32 @@
+<div class="city-search">
+    <form (submit)="onSubmit(); $event.preventDefault()" class="search-form">
+        <div class="search-input-container">
+            <input
+                type="text"
+                [(ngModel)]="searchQuery"
+                (input)="onSearch()"
+                (blur)="onBlur()"
+                [ngModelOptions]="{standalone: true}"
+                placeholder="Rechercher une ville..."
+                class="search-input"
+            >
+
+            <button type="submit" class="search-btn">
+                <span class="search-ico">🔍</span>
+            </button>
+        </div>
+
+        <div class="suggestions-container" *ngIf="showSuggestions && suggestions.length > 0">
+            <div class="suggestions-list">
+                <div
+                    *ngFor="let city of suggestions"
+                    (mousedown)="selectCity(city)"
+                    class="suggestion-item"
+                >
+                    <span class="city-name">{{city.name}}</span>
+                    <span class="country-code">{{city.country}}</span>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

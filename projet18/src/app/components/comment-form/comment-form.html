@@ -1,0 +1,46 @@
+<div class="comment-form">
+    <div class="form-header" *ngIf="replyMode">
+        <span>Réponse = {{placeholder}}</span>
+        <button (click)="onCancel()" class="cancel-btn">X</button>
+    </div>
+
+    <div class="form-body">
+        <textarea
+            #textarea
+            [(ngModel)]="commentText"
+            [placeholder]="placeholder"
+            class="comment-textarea"
+            rows="3"
+            appAutoExpand
+            [maxHeight]="200"
+            (keydown)="onKeydown($event)"
+        ></textarea>
+
+        <div class="form-footer">
+            <div class="suggestions" *ngIf="commentText.includes('@')">
+                <span class="suggestion-label">Mentions : </span>
+                <button
+                    *ngFor="let user of getUsersSuggestions()"
+                    (click)="insertMention(user)"
+                    class="suggestion-btn"
+                >
+                    @{{user}}
+                </button>
+            </div>
+
+            <div class="form-actions">
+                <button
+                    (click)="onCancel()"
+                    *ngIf="replyMode"
+                    class="btn btn-secondary"
+                >Annuler</button>
+
+                <button
+                    (click)="onSubmit()"
+                    [disabled]="!commentText.trim()"
+                    class="btn btn-primary"
+                >{{replyMode ? 'Répondre' : 'Commenter'}}</button>
+            </div>
+        </div>
+    </div>
+</div>

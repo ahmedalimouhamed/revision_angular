@@ -1,0 +1,15 @@
+<div class="weather-dashboard">
+    <app-city-search (citySelected)="onCitySelected($event)"></app-city-search>
+    
+    <div *ngIf="error" class="error-message">
+        {{error}}
+        <button (click)="refreshWeather()">Reessayer</button>
+    </div>
+
+    <app-current-weather [weather]="currentWeather" [loading]="loading"></app-current-weather>
+
+    <div class="dashboard-grid">
+        <app-weather-forecast [forecast]="forecast"></app-weather-forecast>
+        <app-weather-details [weather]="currentWeather"></app-weather-details>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+
+.tooltip{
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 3px;
+    font-size: 12px;
+    top: 95%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    z-index: 1000;
+}
+
+.user-card{
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.user-card:hover{
+    background-color: #f0f0f0;
+}

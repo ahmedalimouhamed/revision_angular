@@ -1,0 +1,36 @@
+<div class="">
+    <h3>{{isEditing ? 'Modifier la tâche' : 'Ajouter une tâche'}}</h3>
+
+    <form class="task-form" (ngSubmit)="onSubmit()" #taskForm="ngForm">
+        <div class="form-group">
+            <label for="title">Titre *</label>
+            <input type="text" id="title" name="title" [(ngModel)]="title" required>
+        </div>
+    
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" [(ngModel)]="description" required rows="3"></textarea>
+        </div>
+    
+        <div class="form-group">
+            <label for="priority">Priorité</label>
+            <select id="priority" name="priority" [(ngModel)]="priority" required>
+                <option value="low">Faible</option>
+                <option value="medium">Moyenne</option>
+                <option value="high">Haute</option>
+            </select>
+        </div>
+    
+        <div class="form-group">
+            <label for="dueDate">Date d'échéance</label>
+            <input type="date" id="dueDate" name="dueDate" [(ngModel)]="dueDate">
+        </div>
+    
+        <div class="form-actions">
+            <button type="submit" [disabled]="!title">
+                {{isEditing ? 'Modifier' : 'Ajouter'}}
+            </button>
+            <button type="button" (click)="onCancel()" class="btn-secondary">Annuler</button>
+        </div>
+    </form>
+</div>

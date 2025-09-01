@@ -1,0 +1,52 @@
+<div class="wether-details" *ngIf="weather">
+    <h3 class="details-title">Détails météorologiques</h3>
+
+    <div class="details-grid" *ngIf="weather">
+        <div class="detail-card">
+            <div class="detail-icon">🔆</div>
+            <div class="detail-info">
+                <div class="detail-label">Lever du soleil</div>
+                <div class="detail-value">{{weather.sunrise | date:'HH:mm'}}</div>
+            </div>
+        </div>
+
+        <div class="detail-card">
+            <div class="detail-icon">🔆</div>
+            <div class="detail-info">
+                <div class="detail-label">Coucher du soleil</div>
+                <div class="detail-value">{{weather.sunset | date:'HH:mm'}}</div>
+            </div>
+        </div>
+
+        <div class="detail-card">
+            <div class="detail-icon">👁️</div>
+            <div class="detail-info">
+                <div class="detail-label">Visibilité</div>
+                <div class="detail-value">{{weather.visibility}} km</div>
+            </div>
+        </div>
+
+        <div class="detail-card">
+            <div class="detail-icon">☀️</div>
+            <div class="detail-info">
+                <div class="detail-label">Index UV</div>
+                <div class="detail-value">{{weather.uvIndex}}</div>
+            </div>
+        </div>
+
+        <div class="detail-card">
+            <div class="detail-icon">🌬️</div>
+            <div class="detail-info">
+                <div class="detail-label">Direction du vent</div>
+                <div class="detail-value">{{getWindDiretion(weather.windDirection)}}</div>
+            </div>
+        </div>
+        <div class="detail-card">
+            <div class="detail-icon">🌬️</div>
+            <div class="detail-info">
+                <div class="detail-label">Vitesse du vent</div>
+                <div class="detail-value">{{weather.windSpeed}} km/h</div>
+            </div>
+        </div>
+    </div>
+</div>
